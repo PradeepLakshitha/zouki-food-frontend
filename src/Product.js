@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { TextField } from "@material-ui/core";
-import QRCode from "qrcode.react"; // Import QRCode component
+import QRCode from "qrcode.react";
 
 const ProductList = () => {
   const { id } = useParams();
@@ -45,24 +45,19 @@ const ProductList = () => {
   };
 
   const handleQRCodeScan = (data) => {
-    // Assuming data contains only the image URL
-    // You can directly fetch the product details using this URL from the database
     fetchProductDetails(data);
   };
 
   const fetchProductDetails = (imageUrl) => {
-    fetch(`/api/productDetails?imageUrl=${imageUrl}`) // Adjust the endpoint based on your backend API
+    fetch(`/api/productDetails?imageUrl=${imageUrl}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Product details:", data);
-        // Optionally, you can set the retrieved product details to state or perform other actions
       })
       .catch((error) =>
         console.error("Error fetching product details:", error)
       );
   };
-
-  // Assuming productList is an array of products
 
   return (
     <div>
@@ -97,7 +92,7 @@ const ProductList = () => {
               </li>
               <div className="qr-code">
                 <QRCode
-                  value={product.imgUrl} // Only encode the image URL into the QR code
+                  value={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
                   size={128}
                   level="H"
                   onScan={handleQRCodeScan}
