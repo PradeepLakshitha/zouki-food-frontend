@@ -1,6 +1,17 @@
 .App {
   text-align: left;
 }
+.header-image {
+  width: 100%;
+  height: auto;
+}
+.product-logo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  position: absolute; /* Position the logo */
+  top: 10px; /* Adjust the top position */
+  left: 10px; /* Adjust the left position */
+}
 
 .container {
   padding: 20px;

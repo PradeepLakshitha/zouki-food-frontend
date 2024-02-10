@@ -4,6 +4,9 @@ import "./App.css";
 import { TextField } from "@material-ui/core";
 import QRCode from "qrcode.react";
 
+// Import the logo image
+import logo from "./logo.png";
+
 const ProductList = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
@@ -61,13 +64,16 @@ const ProductList = () => {
 
   return (
     <div>
-      <h1>Product List</h1>
+      
       <div className="container">
-        <h2>Products</h2>
+        
         <div className="grid-container">
           {products?.map((product) => (
             <div key={product.productID} className="product-card">
               <div className="product-image-container">
+                {/* Logo image */}
+                <img src={logo} alt="Logo" className="product-logo" />
+                {/* Product image */}
                 <img
                   src={product.imgUrl}
                   alt={product.proName}
@@ -86,10 +92,8 @@ const ProductList = () => {
                 </div>
                 <div className="allergens">{product.aller}</div>
               </div>
-              <h5>Open</h5>
-              <li key={product.id}>
-                <Link to={`/product/${product.productID}`}>Burger</Link>
-              </li>
+              
+              
               <div className="qr-code">
                 <QRCode
                   value={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
