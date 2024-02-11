@@ -68,7 +68,7 @@ const ProductList = () => {
 
     return (
         <div>
-            <h1>Product List</h1>
+            
             <div className="container">
                
                 <div className="grid-container">
