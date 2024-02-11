@@ -7,10 +7,7 @@
 }
 .product-logo {
   width: 100px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  position: absolute; /* Position the logo */
-  top: 10px; /* Adjust the top position */
-  left: 10px; /* Adjust the left position */
+  padding-bottom: 10px;
 }
 
 .container {
@@ -80,7 +77,6 @@
   justify-content: center;
   margin-top: 20px; /* Increased margin */
 }
-
 
 .zoomed-image-container {
   position: fixed;

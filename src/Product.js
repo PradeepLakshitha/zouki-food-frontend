@@ -64,15 +64,13 @@ const ProductList = () => {
 
   return (
     <div>
-      
       <div className="container">
-        
         <div className="grid-container">
           {products?.map((product) => (
             <div key={product.productID} className="product-card">
+              {/* Logo image */}
+              <center><img src={logo} alt="Logo" className="product-logo" /></center>
               <div className="product-image-container">
-                {/* Logo image */}
-                <img src={logo} alt="Logo" className="product-logo" />
                 {/* Product image */}
                 <img
                   src={product.imgUrl}
@@ -92,14 +90,19 @@ const ProductList = () => {
                 </div>
                 <div className="allergens">{product.aller}</div>
               </div>
-              
-              
+
               <div className="qr-code">
                 <QRCode
                   value={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
                   size={128}
                   level="H"
                   onScan={handleQRCodeScan}
+                  imageSettings={{
+                    src: logo, // Replace 'path_to_your_logo' with the path to your logo
+                    excavate: true,
+                    width: 80,
+                    height: 30, // Keep true to crop the image in the shape of QR Code
+                  }}
                 />
               </div>
             </div>
