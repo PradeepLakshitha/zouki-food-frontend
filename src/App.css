@@ -70,6 +70,7 @@
 
 .allergens {
   margin-top: 10px; /* Added margin to create space */
+  color: red;
 }
 
 .qr-code {
