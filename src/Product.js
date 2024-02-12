@@ -69,7 +69,9 @@ const ProductList = () => {
           {products?.map((product) => (
             <div key={product.productID} className="product-card">
               {/* Logo image */}
-              <center><img src={logo} alt="Logo" className="product-logo" /></center>
+              <center>
+                <img src={logo} alt="Logo" className="product-logo" />
+              </center>
               <div className="product-image-container">
                 {/* Product image */}
                 <img
@@ -89,6 +91,12 @@ const ProductList = () => {
                   <strong>Allergens:</strong>
                 </div>
                 <div className="allergens">{product.aller}</div>
+              </div>
+
+              <div className="disclaimer">
+                <p style={{ color: "red", fontWeight: "bold" }}>
+                  DISCLAIMER: This product is produced in a facility where the environment contains milk, peanuts, sesame, soy, tree nuts, gluten, lupin, crustacean & fish. Although the safest methods are implemented, accidental or unintentional cross-contamination may occur. Therefore, please be aware that we cannot completely guarantee the absence of undeclared allergens.
+                </p>
               </div>
 
               <div className="qr-code">
