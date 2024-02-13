@@ -94,8 +94,14 @@ const ProductList = () => {
               </div>
 
               <div className="disclaimer">
-                <p style={{ color: "red", fontWeight: "bold" }}>
-                  DISCLAIMER: This product is produced in a facility where the environment contains milk, peanuts, sesame, soy, tree nuts, gluten, lupin, crustacean & fish. Although the safest methods are implemented, accidental or unintentional cross-contamination may occur. Therefore, please be aware that we cannot completely guarantee the absence of undeclared allergens.
+                <p style={{ color: "black", fontWeight: "bold" }}>DISCLAIMER:</p>
+                <p style={{ color: "red"}}>
+                  This product is produced in a facility where the environment
+                  contains milk, peanuts, sesame, soy, tree nuts, gluten, lupin,
+                  crustacean & fish. Although the safest methods are
+                  implemented, accidental or unintentional cross-contamination
+                  may occur. Therefore, please be aware that we cannot
+                  completely guarantee the absence of undeclared allergens.
                 </p>
               </div>
 
