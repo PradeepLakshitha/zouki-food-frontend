@@ -6,13 +6,12 @@ import QRCode from "qrcode.react";
 
 // Import the logo image
 import logo from "./logo.png";
+import loadingGif from "./loading-loader.gif"; // Import your loading GIF file
 
 const ProductList = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
-  const [zoomedImage, setZoomedImage] = useState(null);
-  const [rotation, setRotation] = useState(0);
-  const [zoom, setZoom] = useState(1);
+  const [loading, setLoading] = useState(true); // State for loading animation
 
   useEffect(() => {
     fetchProducts();
@@ -25,121 +24,79 @@ const ProductList = () => {
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
+        setLoading(false); // Once data is fetched, stop loading animation
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
 
-  const handleImageClick = (imageUrl) => {
-    setZoomedImage(imageUrl);
-  };
-
-  const handleCloseZoomedImage = () => {
-    setZoomedImage(null);
-    setRotation(0);
-    setZoom(1);
-  };
-
-  const handleRotateImage = () => {
-    setRotation(rotation + 90);
-  };
-
-  const handleZoomImage = (increment) => {
-    setZoom(zoom + increment);
-  };
-
-  const handleQRCodeScan = (data) => {
-    fetchProductDetails(data);
-  };
-
-  const fetchProductDetails = (imageUrl) => {
-    fetch(`/api/productDetails?imageUrl=${imageUrl}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Product details:", data);
-      })
-      .catch((error) =>
-        console.error("Error fetching product details:", error)
-      );
-  };
-
   return (
     <div>
-      <div className="container">
-        <div className="grid-container">
-          {products?.map((product) => (
-            <div key={product.productID} className="product-card">
-              {/* Logo image */}
-              <center>
-                <img src={logo} alt="Logo" className="product-logo" />
-              </center>
-              <div className="product-image-container">
-                {/* Product image */}
-                <img
-                  src={product.imgUrl}
-                  alt={product.proName}
-                  className="product-image"
-                  onClick={() => handleImageClick(product.imgUrl)}
-                />
-                <div className="product-name">{product.proName}</div>
-              </div>
-              <div className="details-container">
-                <div className="subheader">
-                  <strong>Ingredients:</strong>
-                </div>
-                <div className="ingredients">{product.ing}</div>
-                <div className="subheader">
-                  <strong>Allergens:</strong>
-                </div>
-                <div className="allergens">{product.aller}</div>
-              </div>
-
-              <div className="disclaimer">
-                <p style={{ color: "black", fontWeight: "bold" }}>DISCLAIMER:</p>
-                <p style={{ color: "red"}}>
-                  This product is produced in a facility where the environment
-                  contains milk, peanuts, sesame, soy, tree nuts, gluten, lupin,
-                  crustacean & fish. Although the safest methods are
-                  implemented, accidental or unintentional cross-contamination
-                  may occur. Therefore, please be aware that we cannot
-                  completely guarantee the absence of undeclared allergens.
-                </p>
-              </div>
-
-              <div className="qr-code">
-                <QRCode
-                  value={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
-                  size={128}
-                  level="H"
-                  onScan={handleQRCodeScan}
-                  imageSettings={{
-                    src: logo, // Replace 'path_to_your_logo' with the path to your logo
-                    excavate: true,
-                    width: 80,
-                    height: 30, // Keep true to crop the image in the shape of QR Code
-                  }}
-                />
-              </div>
-            </div>
-          ))}
+      {/* Conditional rendering based on loading state */}
+      {loading ? (
+        <div className="loading-animation">
+          {/* Add your loading GIF here */}
+          <img src={loadingGif} alt="Loading..." />
         </div>
-      </div>
-      {zoomedImage && (
-        <div className="zoomed-image-container">
-          <div className="zoomed-image">
-            <img
-              src={zoomedImage}
-              alt="Zoomed"
-              style={{
-                transform: `rotate(${rotation}deg) scale(${zoom})`,
-              }}
-              className="zoomed-image-element"
-            />
-            <div className="buttons">
-              <button onClick={() => handleZoomImage(0.1)}>Zoom In</button>
-              <button onClick={() => handleZoomImage(-0.1)}>Zoom Out</button>
-              <button onClick={handleRotateImage}>Rotate</button>
-              <button onClick={handleCloseZoomedImage}>Close</button>
-            </div>
+      ) : (
+        <div className="container">
+          <div className="grid-container">
+            {/* Product cards */}
+            {products?.map((product) => (
+              <div key={product.productID} className="product-card">
+                {/* Logo image */}
+                <center>
+                  <img src={logo} alt="Logo" className="product-logo" />
+                </center>
+                {/* Rest of your product card code */}
+                <div className="product-image-container">
+                  {/* Product image */}
+                  <img
+                    src={product.imgUrl}
+                    alt={product.proName}
+                    className="product-image"
+                    onClick={() => handleImageClick(product.imgUrl)}
+                  />
+                  <div className="product-name">{product.proName}</div>
+                </div>
+                <div className="details-container">
+                  <div className="subheader">
+                    <strong>Ingredients:</strong>
+                  </div>
+                  <div className="ingredients">{product.ing}</div>
+                  <div className="subheader">
+                    <strong>Allergens:</strong>
+                  </div>
+                  <div className="allergens">{product.aller}</div>
+                </div>
+
+                <div className="disclaimer">
+                  <p style={{ color: "black", fontWeight: "bold" }}>DISCLAIMER:</p>
+                  <p style={{ color: "red"}}>
+                    This product is produced in a facility where the environment
+                    contains milk, peanuts, sesame, soy, tree nuts, gluten, lupin,
+                    crustacean & fish. Although the safest methods are
+                    implemented, accidental or unintentional cross-contamination
+                    may occur. Therefore, please be aware that we cannot
+                    completely guarantee the absence of undeclared allergens.
+                  </p>
+                </div>
+
+                <div className="qr-code">
+                  <QRCode
+                    value={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
+                    size={128}
+                    level="H"
+                    onScan={handleQRCodeScan}
+                    imageSettings={{
+                      src: logo, // Replace 'path_to_your_logo' with the path to your logo
+                      excavate: true,
+                      width: 80,
+                      height: 30, // Keep true to crop the image in the shape of QR Code
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       )}
