@@ -18,7 +18,7 @@ const ProductList = () => {
   const fetchProducts = () => {
     fetch(
       `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws`
-    ) // Assuming your backend exposes an endpoint for fetching 
+    )
       .then((response) => response.json())
       .then((data) => {
         // Assuming data is an array of products
