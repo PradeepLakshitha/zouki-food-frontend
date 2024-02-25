@@ -15,11 +15,15 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
-
-
   const fetchProducts = () => {
+    const headers = {
+      "x-api-key": "Zouki-api-backend-2025",
+    };
     fetch(
-      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws`
+      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/`,
+      {
+        headers: headers,
+      }
     )
       .then((response) => response.json())
       .then((data) => {

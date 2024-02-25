@@ -21,8 +21,15 @@ const ProductList = () => {
   }, []);
 
   const fetchProducts = () => {
+    const headers = {
+      "x-api-key": "Zouki-api-backend-2025",
+      productid: id,
+    };
     fetch(
-      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/${id}`
+      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/`,
+      {
+        headers: headers,
+      }
     )
       .then((response) => response.json())
       .then((data) => {
@@ -99,11 +106,13 @@ const ProductList = () => {
                   <div className="allergens">{product.aller}</div>
                 </div>
                 <div className="disclaimer">
-                  <p style={{ color: "black", fontWeight: "bold" }}>DISCLAIMER:</p>
-                  <p style={{ color: "red"}}>
+                  <p style={{ color: "black", fontWeight: "bold" }}>
+                    DISCLAIMER:
+                  </p>
+                  <p style={{ color: "red" }}>
                     This product is produced in a facility where the environment
-                    contains milk, peanuts, sesame, soy, tree nuts, gluten, lupin,
-                    crustacean & fish. Although the safest methods are
+                    contains milk, peanuts, sesame, soy, tree nuts, gluten,
+                    lupin, crustacean & fish. Although the safest methods are
                     implemented, accidental or unintentional cross-contamination
                     may occur. Therefore, please be aware that we cannot
                     completely guarantee the absence of undeclared allergens.
