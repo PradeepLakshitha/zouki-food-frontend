@@ -55,6 +55,7 @@ const ProductList = () => {
   };
 
   const fetchProductDetails = (imageUrl) => {
+    console.log('updating product details with develop branch');
     fetch(`/api/productDetails?imageUrl=${imageUrl}`)
       .then((response) => response.json())
       .then((data) => {
