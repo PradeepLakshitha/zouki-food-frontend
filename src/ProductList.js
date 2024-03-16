@@ -17,16 +17,10 @@ const ProductList = () => {
 
   const fetchProducts = () => {
     fetch(
-      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/getAllData`
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json(); // assuming response is JSON
-      })
+      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws`
+    ) // Assuming your backend exposes an endpoint for fetching products
+      .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         // Assuming data is an array of products
         const modifiedData = data.map((product) => ({
           productID: product.productID,
@@ -36,6 +30,23 @@ const ProductList = () => {
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
+
+  // const fetchProducts = () => {
+  //   fetch(
+  //     `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // Assuming data is an array of products
+  //       const modifiedData = data.map((product) => ({
+  //         productID: product.productID,
+  //         proName: product.proName,
+  //       }));
+  //       setProducts(modifiedData);
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // };
+
   const handleImageClick = (imageUrl) => {
     setZoomedImage(imageUrl);
   };
