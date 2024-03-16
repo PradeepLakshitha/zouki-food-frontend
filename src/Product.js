@@ -55,6 +55,7 @@ const ProductList = () => {
   };
 
   const fetchProductDetails = (imageUrl) => {
+    console.log('Fetching product details');
     fetch(`/api/productDetails?imageUrl=${imageUrl}`)
       .then((response) => response.json())
       .then((data) => {
