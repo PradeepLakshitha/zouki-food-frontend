@@ -6,7 +6,7 @@ import QRCode from "qrcode.react";
 
 // Import the logo image z
 import logo from "./logo.png";
-import loadingGif from "./loading-loader.gif"; // Import your loading GIF file
+import loadingGif from "./loading-loader.gif"; // Import your loading GIF filefgdfgf
 
 const ProductList = () => {
   const { id } = useParams();
