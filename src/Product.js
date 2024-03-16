@@ -27,7 +27,7 @@ const ProductList = () => {
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
-        setLoading(false); // Once data is fetched, stop loading animation
+        setLoading(false); // Once data is fetched, stop loading animation1
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
