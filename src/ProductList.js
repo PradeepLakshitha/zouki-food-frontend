@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { TextField } from "@material-ui/core";
-import QRCode from "qrcode.react"; // Import QRCode component
+import QRCode from "qrcode.react"; // Import QRCode component1
 import pro from "./logo.png";
 
 const ProductList = () => {
