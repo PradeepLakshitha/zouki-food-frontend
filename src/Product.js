@@ -4,7 +4,7 @@ import "./App.css";
 import { TextField } from "@material-ui/core";
 import QRCode from "qrcode.react";
 
-// Import the logo image
+// Import the logo image z
 import logo from "./logo.png";
 import loadingGif from "./loading-loader.gif"; // Import your loading GIF file
 
