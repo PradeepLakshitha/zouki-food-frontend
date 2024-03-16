@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { TextField } from "@material-ui/core";
 import QRCode from "qrcode.react";
+import * as axios from "axios";
 
 // Import the logo image
 import logo from "./logo.png";
@@ -26,9 +27,10 @@ const ProductList = () => {
       productid: id,
     };
     fetch(
-      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/`,
+      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/getData`,
       {
         headers: headers,
+        mode: 'no-cors'
       }
     )
       .then((response) => response.json())
