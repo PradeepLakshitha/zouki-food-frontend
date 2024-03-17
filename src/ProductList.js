@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
-import { TextField } from "@material-ui/core";
-import QRCode from "qrcode.react"; // Import QRCode component
+import QRCode from "qrcode.react"; // Adjusted import as TextField was not used
 import pro from "./logo.png";
 
 const ProductList = () => {
@@ -16,36 +15,21 @@ const ProductList = () => {
   }, []);
 
   const fetchProducts = () => {
-    fetch(
-      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws`
-    )
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', 'action': 'GetAllData' },
+    };
+
+    // Using the provided API Gateway endpoint
+    fetch(`https://4lomysby21.execute-api.ap-southeast-2.amazonaws.com/default/zouki-api-lambda`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        // Assuming data is an array of products
-        const modifiedData = data.map((product) => ({
-          productID: product.productID,
-          proName: product.proName,
-        }));
-        setProducts(modifiedData);
+        // Assuming data is the array of products directly for simplicity
+        // Adjust based on the actual response structure
+        setProducts(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
-
-  // const fetchProducts = () => {
-  //   fetch(
-  //     `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // Assuming data is an array of products
-  //       const modifiedData = data.map((product) => ({
-  //         productID: product.productID,
-  //         proName: product.proName,
-  //       }));
-  //       setProducts(modifiedData);
-  //     })
-  //     .catch((error) => console.error("Error fetching data:", error));
-  // };
 
   const handleImageClick = (imageUrl) => {
     setZoomedImage(imageUrl);
@@ -66,24 +50,18 @@ const ProductList = () => {
   };
 
   const handleQRCodeScan = (data) => {
-    // Assuming data contains only the image URLrgtrgg
-    // You can directly fetch the product details using this URL from the database
     fetchProductDetails(data);
   };
 
   const fetchProductDetails = (imageUrl) => {
-    fetch(`/api/productDetails?imageUrl=${imageUrl}`) // Adjust the endpoint based on your backend API
+    // Adjust the endpoint as necessary
+    fetch(`/api/productDetails?imageUrl=${imageUrl}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Product details:", data);
-        // Optionally, you can set the retrieved product details to state or perform other actions
       })
-      .catch((error) =>
-        console.error("Error fetching product details:", error)
-      );
+      .catch((error) => console.error("Error fetching product details:", error));
   };
-
-  // Assuming productList is an array of products
 
   return (
     <div>
@@ -91,23 +69,19 @@ const ProductList = () => {
         <div className="grid-container">
           {products?.map((product) => (
             <div key={product.productID} className="product-card">
-              <Link
-                to={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
-              >
+              <Link to={`/product/${product.productID}`}>
                 <QRCode
                   value={`https://main.d3nnq1ywmugn1z.amplifyapp.com/product/${product.productID}`}
                   size={128}
                   level="H"
-                  onScan={handleQRCodeScan}
                   imageSettings={{
-                    src: pro, // Replace 'path_to_your_logo' with the path to your logo
+                    src: pro,
                     excavate: true,
                     width: 80,
-                    height: 30, // Keep true to crop the image in the shape of QR Code
+                    height: 30,
                   }}
                 />
               </Link>
-
               <p>{product.proName}</p>
             </div>
           ))}
@@ -119,9 +93,7 @@ const ProductList = () => {
             <img
               src={zoomedImage}
               alt="Zoomed"
-              style={{
-                transform: `rotate(${rotation}deg) scale(${zoom})`,
-              }}
+              style={{ transform: `rotate(${rotation}deg) scale(${zoom})` }}
               className="zoomed-image-element"
             />
             <div className="buttons">
