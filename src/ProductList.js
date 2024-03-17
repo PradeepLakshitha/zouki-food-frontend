@@ -66,7 +66,7 @@ const ProductList = () => {
   };
 
   const handleQRCodeScan = (data) => {
-    // Assuming data contains only the image URLrgtrg
+    // Assuming data contains only the image URLrgtrgg
     // You can directly fetch the product details using this URL from the database
     fetchProductDetails(data);
   };
