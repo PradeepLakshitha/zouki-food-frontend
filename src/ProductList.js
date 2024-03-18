@@ -17,21 +17,9 @@ const ProductList = () => {
 
   const fetchProducts = () => {
     fetch(
-      'https://4lomysby21.execute-api.ap-southeast-2.amazonaws.com/default/zouki-api-lambda',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ action: 'GetAllData' })
-      }
+      `https://i5jtnibbtbyxbt6cjv2bhqzd4a0pdogx.lambda-url.ap-southeast-2.on.aws/`
     )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         // Assuming data is an array of products
         const modifiedData = data.map((product) => ({
@@ -40,9 +28,8 @@ const ProductList = () => {
         }));
         setProducts(modifiedData);
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   };
-  
 
   // const fetchProducts = () => {
   //   fetch(
@@ -79,7 +66,7 @@ const ProductList = () => {
   };
 
   const handleQRCodeScan = (data) => {
-    // Assuming data contains only the image URLrgtrgg
+    // Assuming data contains only the image URL
     // You can directly fetch the product details using this URL from the database
     fetchProductDetails(data);
   };
