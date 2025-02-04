@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOUKI User Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- MDBootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.css" rel="stylesheet">
+
+    <style>
+        /* General Styling */
+        body {
+            background: #ffffff; /* White Background */
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-custom {
+            flex: 1; /* Makes content take full height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Background Images */
+        .floating-images img {
+            position: absolute;
+            width: 400px; /* Adjust size of background images */
+            opacity: 0.2; /* Low opacity for subtle effect */
+            animation: floatAnimation 6s infinite alternate ease-in-out;
+        }
+
+        .floating-images img:nth-child(1) { top: 10%; left: 5%; animation-duration: 7s; }
+        .floating-images img:nth-child(2) { top: 20%; right: 10%; animation-duration: 8s; }
+        .floating-images img:nth-child(3) { bottom: 15%; left: 20%; animation-duration: 6s; }
+        .floating-images img:nth-child(4) { bottom: 5%; right: 25%; animation-duration: 5s; }
+        .floating-images img:nth-child(5) { top: 3%; left: 42%; animation-duration: 10s; }
+
+        /* Floating Animation */
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(20px) rotate(5deg); }
+        }
+
+        /* Login Form Styling */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            z-index: 3;
+            position: relative;
+        }
+
+        .logo-container img {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .form-outline {
+            text-align: left;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #78b85c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Button Hover Effect */
+        .btn-success {
+            transition: all 0.3s ease-in-out;
+        }
+        /* Main content fills the available space */
+        .container-custom {
+            flex: 1; /* Pushes the footer to the bottom */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-success:hover {
+            background-color: #4b6cb7;
+            transform: scale(1.05);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .login-container {
+                max-width: 90%;
+            }
+            .floating-images img {
+                width: 80px; /* Reduce image size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating Background Images -->
+<div class="floating-images">
+    <img src="3.png" alt="Background Image 1">
+    <img src="4.png" alt="Background Image 2">
+    <img src="2.png" alt="Background Image 3">
+    <img src="3.png" alt="Background Image 4">
+    <img src="4.png" alt="Background Image 5">
+</div>
+
+<!-- Main Container -->
+<div class="container-custom">
+    <div class="row w-100 justify-content-center">
+
+        <!-- Login Form -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="login-container">
+
+                <!-- Logo -->
+                <div class="logo-container">
+                    <img src="ZoukiLogo.svg" alt="ZOUKI Logo">
+                </div>
+
+                <form>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" />
+                        <label class="form-label" for="form3Example3">Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Enter password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label class="form-check-label" for="form2Example3">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#!" class="text-body">Forgot password?</a>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="button" class="btn btn-success btn-lg w-100">Login</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    Copyright © 2025. All rights reserved.
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- MDBootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"></script>
+
+</body>
+</html>
